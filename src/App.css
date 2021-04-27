@@ -9,22 +9,5 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
 }
-.header {
-  grid-area: h;
-  background-color: #b580ff;
-}
-.header img {
-  width: 20px;
-}
-.navigation {
-  grid-area: n;
-  background-color: #d8aeff;
-}
-.profile{
-  grid-area: c;
-  background-color: #e3caff;
-}
-.previmg {
-  width: 990px;
-  height: 350px;
-}
+
+

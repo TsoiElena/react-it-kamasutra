@@ -1,0 +1,8 @@
+.profile{
+    grid-area: c;
+    background-color: #e3caff;
+}
+.previmg {
+    width: 990px;
+    height: 350px;
+}
