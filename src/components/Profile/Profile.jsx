@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
     return (
-        <div className={s.profile}>
+        <div >
             <div>
                 <img className={s.previmg} src="https://www.ejin.ru/wp-content/uploads/2017/09/18-728.jpg" alt = "?" />
             </div>
