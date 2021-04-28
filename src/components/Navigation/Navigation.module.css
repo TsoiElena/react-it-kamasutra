@@ -1,10 +1,13 @@
 .navigation {
     grid-area: n;
     background-color: #d8aeff;
+    padding: 15px;
 }
-.item {
+.item a {
     color: white;
+    text-decoration: none;
 }
-.item.active {
+
+.item a.active {
     color: #8e1eff;
 }
