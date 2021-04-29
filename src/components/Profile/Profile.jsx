@@ -1,16 +1,12 @@
 import React from 'react'
-import s from './Profile.module.css'
+/*import s from './Profile.module.css'*/
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = () => {
     return (
         <div >
-            <div>
-                <img className={s.previmg} src="https://www.ejin.ru/wp-content/uploads/2017/09/18-728.jpg" alt = "?" />
-            </div>
-            <div>
-                AVA + DESCRIP
-            </div>
+            <ProfileInfo/>
             <MyPosts/>
         </div>
     )
