@@ -13,12 +13,20 @@ const MyPosts = ({posts}) => {
             }
         })
     }
+
+    let newPostText = React.createRef()
+
+    const addPost = () => {
+        let text = newPostText.current.value
+        alert(text)
+    }
+
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <textarea name="" id="" cols="30" rows="2"/>
-                <button>Add Post</button>
+                <textarea name="" id="" cols="30" rows="2" ref={newPostText}/>
+                <button onClick={addPost}>Add Post</button>
             </div>
 
             <div className={s.posts}>
