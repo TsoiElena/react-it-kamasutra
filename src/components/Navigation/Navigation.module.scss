@@ -1,13 +1,16 @@
+@import "src/index";
+
+
 .navigation {
     grid-area: n;
-    background-color: #d8aeff;
+    background-color: $second-color;
     padding: 15px;
 }
 .item a {
-    color: white;
+    color: $text-color;
     text-decoration: none;
 }
 
 .item a.active {
-    color: #8e1eff;
+    color: $active-color;
 }

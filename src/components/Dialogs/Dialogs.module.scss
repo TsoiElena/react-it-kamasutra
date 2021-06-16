@@ -1,3 +1,5 @@
+@import "src/index";
+
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
@@ -7,11 +9,11 @@
     padding: 10px;
 }
 .dialog a {
-    color: black;
+    color: $text-color;
     text-decoration: none;
 }
 .dialog a.active {
-    color: #8e1eff;
+    color: $active-color;
 }
 .messages {
     padding: 10px;

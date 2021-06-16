@@ -1,6 +1,8 @@
+@import "src/index";
+
 .header {
     grid-area: h;
-    background-color: #b580ff;
+    background-color: $main-color;
 }
 .header img {
     width: 20px;

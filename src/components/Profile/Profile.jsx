@@ -1,13 +1,13 @@
 import React from 'react'
-/*import s from './Profile.module.css'*/
+/*import s from './Profile.module.scss'*/
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = ({posts}) => {
     return (
         <div >
             <ProfileInfo/>
-            <MyPosts/>
+            <MyPosts posts={posts}/>
         </div>
     )
 }
