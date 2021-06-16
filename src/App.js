@@ -8,15 +8,15 @@ import './App.scss'
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 
-const App = ({posts, dialogsData, messagesData}) => {
+const App = ({state}) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navigation/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs'> <Dialogs dialogsData={dialogsData} messagesData={messagesData}/> </Route>
-                    <Route path='/profile'> <Profile posts={posts}/> </Route>
+                    <Route path='/dialogs'> <Dialogs dialogsData={state.messagesPage.dialogsData} messagesData={state.messagesPage.messagesData}/> </Route>
+                    <Route path='/profile'> <Profile posts={state.profilePage.posts}/> </Route>
                     <Route path='/news' > <News /> </Route>
                     <Route path='/music' > <Music /> </Route>
                 </div>
