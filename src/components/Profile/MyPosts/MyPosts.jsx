@@ -2,7 +2,7 @@ import React from 'react'
 import s from './MyPosts.module.scss'
 import Post from "./Post/Post";
 
-const MyPosts = ({posts}) => {
+const MyPosts = ({posts, addPost}) => {
 
     const likesCountIncrease = (id) => {
         console.log(id);
@@ -16,17 +16,20 @@ const MyPosts = ({posts}) => {
 
     let newPostText = React.createRef()
 
-    const addPost = () => {
+    const addNewPost = () => {
+        debugger
         let text = newPostText.current.value
-        alert(text)
+        addPost(text)
     }
+
+
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
                 <textarea name="" id="" cols="30" rows="2" ref={newPostText}/>
-                <button onClick={addPost}>Add Post</button>
+                <button onClick={addNewPost}>Add Post</button>
             </div>
 
             <div className={s.posts}>
