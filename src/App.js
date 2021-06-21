@@ -8,14 +8,22 @@ import './App.scss'
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 
-const App = ({state, addPost, postTextChange}) => {
+const App = ({state, addPost, postTextChange, messageTextChange, sentMessage}) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navigation/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs'> <Dialogs dialogsData={state.messagesPage.dialogsData} messagesData={state.messagesPage.messagesData}/> </Route>
+                    <Route path='/dialogs'>
+                        <Dialogs
+                            dialogsData={state.messagesPage.dialogsData}
+                            messagesData={state.messagesPage.messagesData}
+                            messageText={state.messagesPage.messageText}
+                            messageTextChange={messageTextChange}
+                            sentMessage={sentMessage}
+                        />
+                    </Route>
                     <Route path='/profile'>
                         <Profile
                             posts={state.profilePage.posts}

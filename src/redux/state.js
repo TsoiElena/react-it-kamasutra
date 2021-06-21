@@ -27,15 +27,16 @@ let state = {
             {id: 6, text: 'yo'},
             {id: 7, text: 'yo'},
         ],
+        messageText: 'hi'
     },
 }
 
-export let postTextChange = (newText) => {
+export const postTextChange = (newText) => {
     state.profilePage.newPostText = newText
     rerenderTree(state)
 }
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         id: 5,
         text: state.profilePage.newPostText,
@@ -45,5 +46,18 @@ export let addPost = () => {
     rerenderTree(state)
 }
 
+export const messageTextChange = (newText) => {
+    state.messagesPage.messageText = newText
+    rerenderTree(state)
+}
+
+export const sentMessage = () => {
+    let newMessage = {
+        id: 8,
+        text: state.messagesPage.messageText
+    }
+    state.messagesPage.messagesData.push(newMessage)
+    rerenderTree(state)
+}
 
 export default state
