@@ -8,7 +8,7 @@ import './App.scss'
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 
-const App = ({state, addPost}) => {
+const App = ({state, addPost, postTextChange}) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -16,7 +16,14 @@ const App = ({state, addPost}) => {
                 <Navigation/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'> <Dialogs dialogsData={state.messagesPage.dialogsData} messagesData={state.messagesPage.messagesData}/> </Route>
-                    <Route path='/profile'> <Profile posts={state.profilePage.posts} addPost={addPost}/> </Route>
+                    <Route path='/profile'>
+                        <Profile
+                            posts={state.profilePage.posts}
+                            newPostText = {state.profilePage.newPostText}
+                            addPost={addPost}
+                            postTextChange={postTextChange}
+                        />
+                    </Route>
                     <Route path='/news' > <News /> </Route>
                     <Route path='/music' > <Music /> </Route>
                 </div>
