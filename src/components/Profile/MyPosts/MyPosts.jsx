@@ -20,6 +20,7 @@ const MyPosts = ({posts, addPost}) => {
         debugger
         let text = newPostText.current.value
         addPost(text)
+        newPostText.current.value = ''
     }
 
 
