@@ -2,7 +2,7 @@ import React from 'react'
 import s from './MyPosts.module.scss'
 import Post from "./Post/Post";
 
-const MyPosts = ({posts, addPost, newPostText, postTextChange}) => {
+const MyPosts = ({posts, dispatch, newPostText}) => {
     let newText = React.createRef()
 
     const likesCountIncrease = (id) => {
@@ -16,13 +16,13 @@ const MyPosts = ({posts, addPost, newPostText, postTextChange}) => {
     }
 
     const addNewPost = () => {
-        addPost()
-        postTextChange('')
+        dispatch({type: 'ADD-POST'})
+        dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: ''})
     }
 
     let onChangePost = () => {
         let text = newText.current.value
-        postTextChange(text)
+        dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
     }
 
     return (

@@ -36,32 +36,33 @@ let store = {
     getState() {
         return this._state
     },
-    postTextChange (newText) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
-    },
-    addPost () {
-        let newPost = {
-            id: this._state.profilePage.posts.length + 1,
-            text: this._state.profilePage.newPostText,
-            likesCount: 0
+
+    dispatch(action){
+        if (action.type === 'ADD-POST'){
+            let newPost = {
+                id: this._state.profilePage.posts.length + 1,
+                text: this._state.profilePage.newPostText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
         }
-        this._state.profilePage.posts.push(newPost)
-        this._callSubscriber(this._state)
-    },
-    messageTextChange (newText) {
-        this._state.messagesPage.messageText = newText
-        this._callSubscriber(this._state)
-    },
-    sentMessage () {
-        let newMessage = {
-            id: this._state.messagesPage.messagesData.length +1,
-            text: this._state.messagesPage.messageText
+
+        if (action.type === 'SENT-MESSAGE') {
+            let newMessage = {
+                id: this._state.messagesPage.messagesData.length +1,
+                text: this._state.messagesPage.messageText
+            }
+            this._state.messagesPage.messagesData.push(newMessage)
+            this._callSubscriber(this._state)
+        } else if ((action.type === 'UPDATE-MESSAGE-TEXT')) {
+            this._state.messagesPage.messageText = action.newText
+            this._callSubscriber(this._state)
         }
-        this._state.messagesPage.messagesData.push(newMessage)
-        this._callSubscriber(this._state)
-        console.log(this._state.messagesPage.messagesData)
-    }
+    },
 }
 
 export default store

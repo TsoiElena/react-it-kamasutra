@@ -3,15 +3,14 @@ import React from 'react'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = ({posts, newPostText, addPost, postTextChange}) => {
+const Profile = ({posts, newPostText, dispatch}) => {
     return (
         <div >
             <ProfileInfo/>
             <MyPosts
                 posts={posts}
-                addPost={addPost}
                 newPostText={newPostText}
-                postTextChange={postTextChange}
+                dispatch={dispatch}
             />
         </div>
     )

@@ -8,7 +8,7 @@ import './App.scss'
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 
-const App = ({state, addPost, postTextChange, messageTextChange, sentMessage}) => {
+const App = ({state, dispatch}) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -20,16 +20,14 @@ const App = ({state, addPost, postTextChange, messageTextChange, sentMessage}) =
                             dialogsData={state.messagesPage.dialogsData}
                             messagesData={state.messagesPage.messagesData}
                             messageText={state.messagesPage.messageText}
-                            messageTextChange={messageTextChange}
-                            sentMessage={sentMessage}
+                            dispatch={dispatch}
                         />
                     </Route>
                     <Route path='/profile'>
                         <Profile
                             posts={state.profilePage.posts}
                             newPostText = {state.profilePage.newPostText}
-                            addPost={addPost}
-                            postTextChange={postTextChange}
+                            dispatch={dispatch}
                         />
                     </Route>
                     <Route path='/news' > <News /> </Route>

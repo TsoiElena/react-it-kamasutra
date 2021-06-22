@@ -3,18 +3,18 @@ import React from 'react'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
-const Dialogs = ({dialogsData, messagesData, messageText, messageTextChange, sentMessage}) => {
+const Dialogs = ({dialogsData, messagesData, messageText, dispatch}) => {
 
     let newText = React.createRef()
 
     const textMessageChange = () => {
         let text = newText.current.value
-        messageTextChange(text)
+        dispatch({type: 'UPDATE-MESSAGE-TEXT', newText: text})
     }
 
     const sentMeesage = () => {
-        sentMessage()
-        messageTextChange('')
+        dispatch({type: 'SENT-MESSAGE'})
+        dispatch({type: 'UPDATE-MESSAGE-TEXT', newText: ''})
     }
     return (
         <div className={s.dialogs}>
