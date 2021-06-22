@@ -1,5 +1,3 @@
-import {rerenderTree} from "../render";
-
 let state = {
     profilePage: {
         posts: [
@@ -29,6 +27,12 @@ let state = {
         ],
         messageText: 'hi'
     },
+}
+
+let rerenderTree = () => {}
+
+export const subscribe = (observer) => {
+    rerenderTree = observer
 }
 
 export const postTextChange = (newText) => {
