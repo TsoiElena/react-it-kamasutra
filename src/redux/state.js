@@ -1,8 +1,5 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const SENT_MESSAGE = 'SENT-MESSAGE'
-const UPDARE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
-const CHANGE_LIKES_COUNT = 'CHANGE-LIKES-COUNT'
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
 
 let store = {
     _state: {
@@ -44,73 +41,12 @@ let store = {
     },
 
     dispatch(action){
-        if (action.type === ADD_POST){
-            let newPost = {
-                id: this._state.profilePage.posts.length + 1,
-                text: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state)
-        }
+        this._state.profilePage = profileReducer( this._state.profilePage, action)
+        this._state.messagesPage = dialogsReducer( this._state.messagesPage, action)
 
-        if (action.type === SENT_MESSAGE) {
-            let newMessage = {
-                id: this._state.messagesPage.messagesData.length +1,
-                text: this._state.messagesPage.messageText
-            }
-            this._state.messagesPage.messagesData.push(newMessage)
-            this._callSubscriber(this._state)
-        } else if ((action.type === UPDARE_MESSAGE_TEXT)) {
-            this._state.messagesPage.messageText = action.newText
-            this._callSubscriber(this._state)
-        }
-
-        if (action.type === CHANGE_LIKES_COUNT){
-            this._state.profilePage.posts.forEach((post) => {
-                if (post.id === action.id){
-                    this._state.profilePage.posts[post.id-1].likesCount++
-                }
-            })
-            this._callSubscriber(this._state)
-        }
+        this._callSubscriber(this._state)
     },
 }
 
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-}
-
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
-    }
-}
-
-export const sentMessageActionCreator = () => {
-    return {
-        type: SENT_MESSAGE
-    }
-}
-
-export const updateMessageTextActionCreator = (text) => {
-    return {
-        type: UPDARE_MESSAGE_TEXT,
-        newText: text
-    }
-}
-
-export const changeLikesCountActionCreator = (id) => {
-    return {
-        type: CHANGE_LIKES_COUNT,
-        id: id
-    }
-}
 export default store
 window.store = store

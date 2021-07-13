@@ -5,7 +5,7 @@ import {
     addPostActionCreator,
     changeLikesCountActionCreator,
     updateNewPostTextActionCreator
-} from "../../../redux/state";
+} from "../../../redux/profile-reducer";
 
 const MyPosts = ({posts, dispatch, newPostText}) => {
     let newText = React.createRef()
