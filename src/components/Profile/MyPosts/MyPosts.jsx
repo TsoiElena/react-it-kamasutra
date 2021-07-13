@@ -1,19 +1,18 @@
 import React from 'react'
 import s from './MyPosts.module.scss'
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
+import {
+    addPostActionCreator,
+    changeLikesCountActionCreator,
+    updateNewPostTextActionCreator
+} from "../../../redux/state";
 
 const MyPosts = ({posts, dispatch, newPostText}) => {
     let newText = React.createRef()
 
     const likesCountIncrease = (id) => {
-        console.log(id);
-        posts.forEach((post)=>{
-            if (post.id === id){
-                post.likesCount++
-                console.log(post);
-            }
-        })
+        let action = changeLikesCountActionCreator(id)
+        dispatch(action)
     }
 
     const addNewPost = () => {
