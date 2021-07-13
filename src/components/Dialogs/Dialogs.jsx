@@ -2,6 +2,7 @@ import s from './Dialogs.module.scss'
 import React from 'react'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {sentMessageActionCreator, updateMessageTextActionCreator} from "../../redux/state";
 
 const Dialogs = ({dialogsData, messagesData, messageText, dispatch}) => {
 
@@ -9,12 +10,14 @@ const Dialogs = ({dialogsData, messagesData, messageText, dispatch}) => {
 
     const textMessageChange = () => {
         let text = newText.current.value
-        dispatch({type: 'UPDATE-MESSAGE-TEXT', newText: text})
+        let action = updateMessageTextActionCreator(text)
+        dispatch(action)
     }
 
     const sentMeesage = () => {
-        dispatch({type: 'SENT-MESSAGE'})
-        dispatch({type: 'UPDATE-MESSAGE-TEXT', newText: ''})
+        let action = updateMessageTextActionCreator('')
+        dispatch(sentMessageActionCreator())
+        dispatch(action)
     }
     return (
         <div className={s.dialogs}>

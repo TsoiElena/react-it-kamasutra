@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const SENT_MESSAGE = 'SENT-MESSAGE'
+const UPDARE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
+
 let store = {
     _state: {
         profilePage: {
@@ -38,7 +43,7 @@ let store = {
     },
 
     dispatch(action){
-        if (action.type === 'ADD-POST'){
+        if (action.type === ADD_POST){
             let newPost = {
                 id: this._state.profilePage.posts.length + 1,
                 text: this._state.profilePage.newPostText,
@@ -46,24 +51,49 @@ let store = {
             }
             this._state.profilePage.posts.push(newPost)
             this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state)
         }
 
-        if (action.type === 'SENT-MESSAGE') {
+        if (action.type === SENT_MESSAGE) {
             let newMessage = {
                 id: this._state.messagesPage.messagesData.length +1,
                 text: this._state.messagesPage.messageText
             }
             this._state.messagesPage.messagesData.push(newMessage)
             this._callSubscriber(this._state)
-        } else if ((action.type === 'UPDATE-MESSAGE-TEXT')) {
+        } else if ((action.type === UPDARE_MESSAGE_TEXT)) {
             this._state.messagesPage.messageText = action.newText
             this._callSubscriber(this._state)
         }
     },
 }
 
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+}
+
+export const sentMessageActionCreator = () => {
+    return {
+        type: SENT_MESSAGE
+    }
+}
+
+export const updateMessageTextActionCreator = (text) => {
+    return {
+        type: UPDARE_MESSAGE_TEXT,
+        newText: text
+    }
+}
 export default store
 window.store = store
