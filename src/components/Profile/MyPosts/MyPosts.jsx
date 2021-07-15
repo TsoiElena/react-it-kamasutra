@@ -10,11 +10,11 @@ import {
 const MyPosts = ({posts, dispatch, newPostText}) => {
     let newText = React.createRef()
 
-    const likesCountIncrease = (id) => {
+  /*  const likesCountIncrease = (id) => {
         let action = changeLikesCountActionCreator(id)
         dispatch(action)
     }
-
+*/
     const addNewPost = () => {
         dispatch(addPostActionCreator())
         let action = updateNewPostTextActionCreator('')
@@ -44,7 +44,7 @@ const MyPosts = ({posts, dispatch, newPostText}) => {
             </div>
 
             <div className={s.posts}>
-                {posts.map((p) => <Post key={p.id} post={p} likesCountIncrease={likesCountIncrease}/>)}
+                {posts.map((p) => <Post key={p.id} post={p} likesCountIncrease={{/*likesCountIncrease*/}}/>)}
             </div>
         </div>
     )
