@@ -1,30 +1,21 @@
 import React from 'react'
 import s from './MyPosts.module.scss'
 import Post from "./Post/Post";
-import {
-    addPostActionCreator,
-    changeLikesCountActionCreator,
-    updateNewPostTextActionCreator
-} from "../../../redux/profile-reducer";
 
-const MyPosts = ({posts, dispatch, newPostText}) => {
+const MyPosts = ({posts, newPostText, updateNewPostText, addPost, likesCountChange}) => {
     let newText = React.createRef()
 
-  /*  const likesCountIncrease = (id) => {
-        let action = changeLikesCountActionCreator(id)
-        dispatch(action)
+    const likesCountIncrease = (id) => {
+        likesCountChange(id)
     }
-*/
+
     const addNewPost = () => {
-        dispatch(addPostActionCreator())
-        let action = updateNewPostTextActionCreator('')
-        dispatch(action)
+        addPost()
     }
 
     let onChangePost = () => {
         let text = newText.current.value
-        let action = updateNewPostTextActionCreator(text)
-        dispatch(action)
+        updateNewPostText(text)
     }
 
     return (
@@ -44,7 +35,7 @@ const MyPosts = ({posts, dispatch, newPostText}) => {
             </div>
 
             <div className={s.posts}>
-                {posts.map((p) => <Post key={p.id} post={p} likesCountIncrease={{/*likesCountIncrease*/}}/>)}
+                {posts.map((p) => <Post key={p.id} post={p} likesCountIncrease={likesCountIncrease}/>)}
             </div>
         </div>
     )

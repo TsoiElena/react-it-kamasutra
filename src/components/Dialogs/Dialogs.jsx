@@ -2,23 +2,20 @@ import s from './Dialogs.module.scss'
 import React from 'react'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {sentMessageActionCreator, updateMessageTextActionCreator} from "../../redux/dialogs-reducer";
 
-const Dialogs = ({dialogsData, messagesData, messageText, dispatch}) => {
+const Dialogs = ({dialogsData, messagesData, messageText, updateNewMessageText, messageSent}) => {
 
     let newText = React.createRef()
 
     const textMessageChange = () => {
         let text = newText.current.value
-        let action = updateMessageTextActionCreator(text)
-        dispatch(action)
+        updateNewMessageText(text)
     }
 
     const sentMeesage = () => {
-        let action = updateMessageTextActionCreator('')
-        dispatch(sentMessageActionCreator())
-        dispatch(action)
+        messageSent()
     }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

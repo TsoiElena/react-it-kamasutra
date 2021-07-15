@@ -2,11 +2,11 @@ import React from 'react'
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import { Route, BrowserRouter } from "react-router-dom";
 import './App.scss'
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 const App = ({state, dispatch}) => {
     return (
@@ -16,7 +16,7 @@ const App = ({state, dispatch}) => {
                 <Navigation/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'>
-                        <Dialogs
+                        <DialogsContainer
                             dialogsData={state.messagesPage.dialogsData}
                             messagesData={state.messagesPage.messagesData}
                             messageText={state.messagesPage.messageText}
