@@ -5,26 +5,39 @@ import {
     updateNewPostTextActionCreator
 } from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import StoreContext from "../../../StoreContext";
 
-const MyPostsContainer = ({posts, dispatch, newPostText}) => {
-    const likesCountChange = (id) => {
-        let action = changeLikesCountActionCreator(id)
-        dispatch(action)
-    }
-
-    const addPost = () => {
-        dispatch(addPostActionCreator())
-        let action = updateNewPostTextActionCreator('')
-        dispatch(action)
-    }
-
-    let updateNewPostText = (text) => {
-        let action = updateNewPostTextActionCreator(text)
-        dispatch(action)
-    }
+const MyPostsContainer = (/*{posts, dispatch, newPostText}*/) => {
 
     return (
-        <MyPosts updateNewPostText={updateNewPostText} addPost = {addPost} posts={posts} newPostText={newPostText} likesCountChange={likesCountChange}/>
+        <StoreContext.Consumer>{
+            (store) => {
+                let state = store.getState()
+                const likesCountChange = (id) => {
+                    let action = changeLikesCountActionCreator(id)
+                    store.dispatch(action)
+                }
+
+                const addPost = () => {
+                    store.dispatch(addPostActionCreator())
+                    let action = updateNewPostTextActionCreator('')
+                    store.dispatch(action)
+                }
+
+                let updateNewPostText = (text) => {
+                    let action = updateNewPostTextActionCreator(text)
+                    store.dispatch(action)
+                }
+                return (<MyPosts
+                    updateNewPostText={updateNewPostText}
+                    addPost={addPost}
+                    posts={state.profilePage.posts}
+                    newPostText={state.profilePage.newPostText}
+                    likesCountChange={likesCountChange}
+                />)
+            }
+        }
+        </StoreContext.Consumer>
     )
 }
 
