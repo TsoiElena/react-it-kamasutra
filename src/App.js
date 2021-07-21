@@ -7,6 +7,7 @@ import './App.scss'
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Find-Users/UsersContainer";
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path='/profile'> <Profile/> </Route>
                     <Route path='/news' > <News /> </Route>
                     <Route path='/music' > <Music /> </Route>
+                    <Route path='/users' > <UsersContainer/> </Route>
                 </div>
             </div>
         </BrowserRouter>
