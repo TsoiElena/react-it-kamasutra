@@ -50,10 +50,10 @@ const Users = ({users, follow, unfollow, setUsers}) => {
                             </div>
                             <div>
                                 {user.followed
-                                    ? <button onClick={(e) => {
+                                    ? <button onClick={() => {
                                         unfollow(user.id)
                                     }}>unfollow</button>
-                                    : <button onClick={(e) => {
+                                    : <button onClick={() => {
                                         follow(user.id)
                                     }}>follow</button>}
                             </div>
@@ -63,7 +63,7 @@ const Users = ({users, follow, unfollow, setUsers}) => {
                                 <div className={style.name}>{user.fullname}</div>
                                 <div>{user.status}</div>
                             </div>
-                            <div className={style.locationInfo}>
+                            <div>
                                 <div>{user.location.city},</div>
                                 <div className={style.country}>{user.location.country}</div>
                             </div>
