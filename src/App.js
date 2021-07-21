@@ -8,28 +8,15 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-const App = (/*{state, dispatch}*/) => {
+const App = () => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navigation/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs'>
-                        <DialogsContainer
-                            /*dialogsData={state.messagesPage.dialogsData}
-                            messagesData={state.messagesPage.messagesData}
-                            messageText={state.messagesPage.messageText}
-                            dispatch={dispatch}*/
-                        />
-                    </Route>
-                    <Route path='/profile'>
-                        <Profile
-                            /*posts={state.profilePage.posts}
-                            newPostText = {state.profilePage.newPostText}
-                            dispatch={dispatch}*/
-                        />
-                    </Route>
+                    <Route path='/dialogs'> <DialogsContainer/> </Route>
+                    <Route path='/profile'> <Profile/> </Route>
                     <Route path='/news' > <News /> </Route>
                     <Route path='/music' > <Music /> </Route>
                 </div>
