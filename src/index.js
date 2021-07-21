@@ -5,16 +5,13 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import Provider from "react-redux/lib/components/Provider";
 
-let rerenderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <Provider value={store}>
+            <Provider store={store}>
             <App/>
             </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );
-}
-rerenderTree()
-store.subscribe(rerenderTree)
+
 
