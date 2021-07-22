@@ -4,62 +4,62 @@ const SET_USERS = 'SET_USERS'
 
 let initialState = {
     users: [
-        {
-            id: 1,
-            photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
-            followed: false,
-            fullname: 'Dima',
-            status: 'hi i am new here',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: 2,
-            photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
-            followed: true,
-            fullname: 'Tima',
-            status: 'hi i am new here',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: 3,
-            photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
-            followed: true,
-            fullname: 'Rima',
-            status: 'hi i am new here',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: 4,
-            photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
-            followed: false,
-            fullname: 'Kira',
-            status: 'hi i am new here',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: 5,
-            photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
-            followed: false,
-            fullname: 'Lena',
-            status: 'hi i am new here',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: 6,
-            photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
-            followed: true,
-            fullname: 'Anna',
-            status: 'hi i am new here',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: 7,
-            photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
-            followed: false,
-            fullname: 'Mahsa',
-            status: 'hi i am new here',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
+        // {
+        //     id: 1,
+        //     photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
+        //     followed: false,
+        //     fullname: 'Dima',
+        //     status: 'hi i am new here',
+        //     location: {city: 'Moscow', country: 'Russia'}
+        // },
+        // {
+        //     id: 2,
+        //     photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
+        //     followed: true,
+        //     fullname: 'Tima',
+        //     status: 'hi i am new here',
+        //     location: {city: 'Moscow', country: 'Russia'}
+        // },
+        // {
+        //     id: 3,
+        //     photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
+        //     followed: true,
+        //     fullname: 'Rima',
+        //     status: 'hi i am new here',
+        //     location: {city: 'Moscow', country: 'Russia'}
+        // },
+        // {
+        //     id: 4,
+        //     photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
+        //     followed: false,
+        //     fullname: 'Kira',
+        //     status: 'hi i am new here',
+        //     location: {city: 'Moscow', country: 'Russia'}
+        // },
+        // {
+        //     id: 5,
+        //     photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
+        //     followed: false,
+        //     fullname: 'Lena',
+        //     status: 'hi i am new here',
+        //     location: {city: 'Moscow', country: 'Russia'}
+        // },
+        // {
+        //     id: 6,
+        //     photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
+        //     followed: true,
+        //     fullname: 'Anna',
+        //     status: 'hi i am new here',
+        //     location: {city: 'Moscow', country: 'Russia'}
+        // },
+        // {
+        //     id: 7,
+        //     photoUrl: 'https://i.ytimg.com/vi/-rkWyaiS4_8/hqdefault.jpg',
+        //     followed: false,
+        //     fullname: 'Mahsa',
+        //     status: 'hi i am new here',
+        //     location: {city: 'Moscow', country: 'Russia'}
+        // },
     ],
 }
 
