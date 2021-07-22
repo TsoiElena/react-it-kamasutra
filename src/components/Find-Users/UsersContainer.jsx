@@ -1,7 +1,7 @@
-import React from "react"
-import {followActionCreator, setUsers, unfollowActionCreator} from "../../redux/findUsers-reducer";
-import connect from "react-redux/lib/connect/connect";
-import Users from "./index";
+import React from 'react'
+import {followActionCreator, setUsers, unfollowActionCreator} from '../../redux/findUsers-reducer'
+import connect from 'react-redux/lib/connect/connect'
+import Users from './index'
 
 let mapStateToProps = (state) => {
     return {
