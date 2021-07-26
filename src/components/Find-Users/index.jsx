@@ -4,14 +4,33 @@ import userPhoto from '../../assets/images/UserImg.png'
 import api from "../../api";
 
 
-const Users = ({users, follow, unfollow, setUsers}) => {
-    useEffect(() => {
-        api.get('users').then(res => {
+const Users = ({users, follow, unfollow, setUsers, pageSize, totalUsersCount, currentPage, setCurrentPage, setTotalUsersCount}) => {
+
+    let pagesCount = Math.ceil(totalUsersCount/pageSize)
+    let pages = []
+
+    for(let i=1; i <= pagesCount; i++) {
+        pages.push(i)
+    }
+
+    const onPageChanged = (page) => {
+        setCurrentPage(page)
+        api.get(`users?page=${page}&count=${pageSize}`).then(res => {
             setUsers(res.data.items)
+        })
+    }
+
+    useEffect(() => {
+        api.get(`users?page=${currentPage}&count=${pageSize}`).then(res => {
+            setUsers(res.data.items)
+            setTotalUsersCount(res.data.totalCount)
         })
     }, [])
     return (
         <div>
+            <div>
+                {pages.map (page => (<button className={currentPage === page ? style.active : '' } onClick={() => {onPageChanged(page)}}>{page}</button>) )}
+            </div>
             {
                 users.map(user => (<div key={user.id} className={style.item}>
                         <div className={style.avatar}>
@@ -42,6 +61,7 @@ const Users = ({users, follow, unfollow, setUsers}) => {
                     </div>)
                 )
             }
+
         </div>
 
     )
