@@ -1,11 +1,8 @@
-import React, {useEffect} from 'react'
-import style from './style.module.scss';
-import userPhoto from '../../assets/images/UserImg.png'
-import api from "../../api";
+import React from "react"
+import style from "./style.module.scss";
+import userPhoto from "../../assets/images/UserImg.png";
 
-
-const Users = ({users, follow, unfollow, setUsers, pageSize, totalUsersCount, currentPage, setCurrentPage, setTotalUsersCount}) => {
-
+const Users = ({users, follow, unfollow, onPageChanged, currentPage, totalUsersCount, pageSize}) => {
     let pagesCount = Math.ceil(totalUsersCount/pageSize)
     let pages = []
 
@@ -13,23 +10,12 @@ const Users = ({users, follow, unfollow, setUsers, pageSize, totalUsersCount, cu
         pages.push(i)
     }
 
-    const onPageChanged = (page) => {
-        setCurrentPage(page)
-        api.get(`users?page=${page}&count=${pageSize}`).then(res => {
-            setUsers(res.data.items)
-        })
-    }
-
-    useEffect(() => {
-        api.get(`users?page=${currentPage}&count=${pageSize}`).then(res => {
-            setUsers(res.data.items)
-            setTotalUsersCount(res.data.totalCount)
-        })
-    }, [])
     return (
         <div>
             <div>
-                {pages.map (page => (<button className={currentPage === page ? style.active : '' } onClick={() => {onPageChanged(page)}}>{page}</button>) )}
+                {pages.map(page => (<button className={currentPage === page ? style.active : ''} onClick={() => {
+                    onPageChanged(page)
+                }}>{page}</button>))}
             </div>
             {
                 users.map(user => (<div key={user.id} className={style.item}>
@@ -63,7 +49,6 @@ const Users = ({users, follow, unfollow, setUsers, pageSize, totalUsersCount, cu
             }
 
         </div>
-
     )
 }
 

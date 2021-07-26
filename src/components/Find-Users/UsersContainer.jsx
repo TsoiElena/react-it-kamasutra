@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {
     followActionCreator,
     setCurrentPageActionCreator, setTotalUsersCount,
@@ -6,9 +6,40 @@ import {
     unfollowActionCreator
 } from '../../redux/findUsers-reducer'
 import connect from 'react-redux/lib/connect/connect'
-import Users from './index'
+import api from "../../api";
+import Users from "./index";
 
-let mapStateToProps = (state) => {
+const UsersApi = ({users, follow, unfollow, setUsers, pageSize, totalUsersCount, currentPage, setCurrentPage, setTotalUsersCount}) => {
+
+    const onPageChanged = (page) => {
+        setCurrentPage(page)
+        api.get(`users?page=${page}&count=${pageSize}`).then(res => {
+            setUsers(res.data.items)
+        })
+    }
+
+    useEffect(() => {
+        api.get(`users?page=${currentPage}&count=${pageSize}`).then(res => {
+            setUsers(res.data.items)
+            setTotalUsersCount(res.data.totalCount)
+        })
+    }, [])
+
+    return (
+        <Users
+            users={users}
+            follow={follow}
+            unfollow={unfollow}
+            onPageChanged={onPageChanged}
+            currentPage={currentPage}
+            totalUsersCount={totalUsersCount}
+            pageSize={pageSize}
+        />
+    )
+}
+
+
+const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -17,7 +48,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         follow: (userId) => {
             dispatch(followActionCreator(userId))
@@ -37,6 +68,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps) (Users)
+export default connect(mapStateToProps,mapDispatchToProps) (UsersApi)
 
 
