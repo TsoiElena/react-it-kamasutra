@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react'
 import {
-    followActionCreator,
-    setCurrentPageActionCreator, setTotalUsersCount,
+    follow,
+    setCurrentPage, setTotalUsersCount,
     setUsers, togalIsFetching,
-    unfollowActionCreator
+    unfollow
 } from '../../redux/findUsers-reducer'
 import connect from 'react-redux/lib/connect/connect'
 import api from '../../api'
@@ -58,30 +58,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followActionCreator(userId))
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowActionCreator(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsers(users))
-        },
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageActionCreator(currentPage))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setTotalUsersCount(totalCount))
-        },
-        togalIsFetching: (isFetching) => {
-            dispatch(togalIsFetching(isFetching))
-        }
-
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersApi)
+export default connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    togalIsFetching
+})(UsersApi)
 
 

@@ -62,16 +62,16 @@ const findUsersReducer = (state = initialState, action) => {
     }
 }
 
-export const followActionCreator = (userId) => {
+export const follow = (userId) => {
     return {type: FOLLOW, userId: userId}
 }
 
-export const unfollowActionCreator = (userId) => {
+export const unfollow = (userId) => {
     return {type: UNFOLLOW, userId: userId}
 }
 
 export const setUsers = (users) => ({type: SET_USERS, users})
-export const setCurrentPageActionCreator = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUsersCount = (totalCount) => ({type: SET_TOTAL_USERS_COUNT, totalCount})
 export const togalIsFetching = (isFetching) => ({type: TOGAL_IS_FETCHING, isFetching})
 
