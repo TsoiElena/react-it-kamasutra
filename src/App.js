@@ -17,7 +17,7 @@ const App = () => {
                 <Navigation/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'> <DialogsContainer/> </Route>
-                    <Route path='/profile'> <ProfileContainer/> </Route>
+                    <Route path='/profile/:userId?'> <ProfileContainer/> </Route>
                     <Route path='/news' > <News /> </Route>
                     <Route path='/music' > <Music /> </Route>
                     <Route path='/users' > <UsersContainer/> </Route>
