@@ -1,6 +1,7 @@
-import React from "react"
-import style from "./style.module.scss";
-import userPhoto from "../../assets/images/UserImg.png";
+import React from 'react'
+import style from './style.module.scss'
+import userPhoto from '../../assets/images/UserImg.png'
+import {NavLink} from 'react-router-dom'
 
 const Users = ({users, follow, unfollow, onPageChanged, currentPage, totalUsersCount, pageSize}) => {
     let pagesCount = Math.ceil(totalUsersCount/pageSize)
@@ -21,8 +22,10 @@ const Users = ({users, follow, unfollow, onPageChanged, currentPage, totalUsersC
                 users.map(user => (<div key={user.id} className={style.item}>
                         <div className={style.avatar}>
                             <div>
+                                <NavLink to={`/profile/${user.id}`}>
                                 <img src={user.photos.small != null ? user.photos.small : userPhoto} alt=""
                                      className={style.userPhoto}/>
+                                </NavLink>
                             </div>
                             <div>
                                 {user.followed
