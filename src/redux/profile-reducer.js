@@ -25,7 +25,8 @@ const profileReducer = (state = initialState, action) => {
                         text: state.newPostText,
                         likesCount: 0
                     }
-                ]
+                ],
+                newPostText: ''
             }
 
         case UPDATE_NEW_POST_TEXT:

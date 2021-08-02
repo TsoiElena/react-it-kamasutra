@@ -10,20 +10,52 @@ import api from '../../api'
 import Users from './index'
 import Preloader from "../common/Preloader/Preloader";
 
-const UsersApi = ({users, follow, unfollow, setUsers, pageSize, totalUsersCount, currentPage, setCurrentPage, setTotalUsersCount, isFetching, togalIsFetching}) => {
+const UsersApi = ({
+                      users,
+                      follow,
+                      unfollow,
+                      setUsers,
+                      pageSize,
+                      totalUsersCount,
+                      currentPage,
+                      setCurrentPage,
+                      setTotalUsersCount,
+                      isFetching,
+                      togalIsFetching
+}) => {
 
     const onPageChanged = (page) => {
         setCurrentPage(page)
         togalIsFetching(true)
-        api.get(`users?page=${page}&count=${pageSize}`).then(res => {
+        api.get(`users?page=${page}&count=${pageSize}`, {withCredentials: true}).then(res => {
             setUsers(res.data.items)
+            togalIsFetching(false)
+        })
+    }
+
+    const followUser = (id) => {
+        api.post(`/follow/${id}`, {}, {withCredentials: true}).then(res => {
+            togalIsFetching(true)
+            if(res.data.resultCode === 0){
+                follow(id)
+            }
+            togalIsFetching(false)
+        })
+    }
+
+    const unfollowUser = (id) => {
+        api.delete(`/follow/${id}`, {withCredentials: true}).then(res => {
+            togalIsFetching(true)
+            if(res.data.resultCode === 0){
+                unfollow(id)
+            }
             togalIsFetching(false)
         })
     }
 
     useEffect(() => {
         togalIsFetching(true)
-        api.get(`users?page=${currentPage}&count=${pageSize}`).then(res => {
+        api.get(`users?page=${currentPage}&count=${pageSize}`, {withCredentials: true}).then(res => {
             togalIsFetching(false)
             setUsers(res.data.items)
             setTotalUsersCount(res.data.totalCount)
@@ -35,8 +67,8 @@ const UsersApi = ({users, follow, unfollow, setUsers, pageSize, totalUsersCount,
             { isFetching ? <Preloader/> : null}
             <Users
                 users={users}
-                follow={follow}
-                unfollow={unfollow}
+                follow={followUser}
+                unfollow={unfollowUser}
                 onPageChanged={onPageChanged}
                 currentPage={currentPage}
                 totalUsersCount={totalUsersCount}
@@ -66,5 +98,3 @@ export default connect(mapStateToProps, {
     setTotalUsersCount,
     togalIsFetching
 })(UsersApi)
-
-
