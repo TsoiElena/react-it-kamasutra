@@ -7,3 +7,20 @@
 .header img {
     width: 20px;
 }
+
+.loginBlock {
+    float: right;
+padding: 20px;
+
+}
+
+.loginBlock a {
+    color: $content-color;
+    font-size: larger;
+    text-decoration: none;
+}
+
+.userName {
+    color: $content-color;
+    font-size: larger;
+}
