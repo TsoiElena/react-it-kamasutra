@@ -4,13 +4,15 @@ const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const TOGAL_IS_FETCHING = 'TOGAL_IS_FETCHING'
+const FOLLOWING = 'FOLLOWING'
 
 let initialState = {
     users: [],
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    following: []
 }
 
 const findUsersReducer = (state = initialState, action) => {
@@ -57,22 +59,21 @@ const findUsersReducer = (state = initialState, action) => {
         case TOGAL_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
 
+        case FOLLOWING:
+            return {...state, following: action.following ? [...state.following, action.userId]
+                    : [...state.following.filter(id => id != action.userId)]}
+
         default:
             return state
     }
 }
 
-export const follow = (userId) => {
-    return {type: FOLLOW, userId: userId}
-}
-
-export const unfollow = (userId) => {
-    return {type: UNFOLLOW, userId: userId}
-}
-
+export const follow = (userId) => ({type: FOLLOW, userId: userId})
+export const unfollow = (userId) => ({type: UNFOLLOW, userId: userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUsersCount = (totalCount) => ({type: SET_TOTAL_USERS_COUNT, totalCount})
 export const togalIsFetching = (isFetching) => ({type: TOGAL_IS_FETCHING, isFetching})
+export const followingAC = (following, userId) => ({type: FOLLOWING, following, userId})
 
 export default findUsersReducer

@@ -3,7 +3,7 @@ import style from './style.module.scss'
 import userPhoto from '../../assets/images/UserImg.png'
 import {NavLink} from 'react-router-dom'
 
-const Users = ({users, follow, unfollow, onPageChanged, currentPage, totalUsersCount, pageSize}) => {
+const Users = ({users, follow, unfollow, onPageChanged, currentPage, totalUsersCount, pageSize, following}) => {
     let pagesCount = Math.ceil(totalUsersCount/pageSize)
     let pages = []
 
@@ -29,10 +29,10 @@ const Users = ({users, follow, unfollow, onPageChanged, currentPage, totalUsersC
                             </div>
                             <div>
                                 {user.followed
-                                    ? <button onClick={() => {
+                                    ? <button disabled={following.some(id => id === user.id)} onClick={() => {
                                         unfollow(user.id)
                                     }}>unfollow</button>
-                                    : <button onClick={() => {
+                                    : <button disabled={following.some(id => id === user.id)} onClick={() => {
                                         follow(user.id)
                                     }}>follow</button>}
                             </div>

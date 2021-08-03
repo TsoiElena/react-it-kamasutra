@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {
-    follow,
+    follow, followingAC,
     setCurrentPage, setTotalUsersCount,
     setUsers, togalIsFetching,
     unfollow
@@ -12,6 +12,7 @@ import Preloader from "../common/Preloader/Preloader";
 
 const UsersApi = ({
                       users,
+                      following,
                       follow,
                       unfollow,
                       setUsers,
@@ -21,8 +22,9 @@ const UsersApi = ({
                       setCurrentPage,
                       setTotalUsersCount,
                       isFetching,
-                      togalIsFetching
-}) => {
+                      togalIsFetching,
+                      followingAC
+                  }) => {
 
     const onPageChanged = (page) => {
         setCurrentPage(page)
@@ -35,21 +37,25 @@ const UsersApi = ({
 
     const followUser = (id) => {
         togalIsFetching(true)
+        followingAC(true, id)
         userAPI.follow(id).then(resultCode => {
-            if(resultCode === 0){
+            if (resultCode === 0) {
                 follow(id)
             }
             togalIsFetching(false)
+            followingAC(false, id)
         })
     }
 
     const unfollowUser = (id) => {
         togalIsFetching(true)
+        followingAC(true, id)
         userAPI.unfollow(id).then(resultCode => {
-            if(resultCode === 0){
+            if (resultCode === 0) {
                 unfollow(id)
             }
             togalIsFetching(false)
+            followingAC(false, id)
         })
     }
 
@@ -64,7 +70,7 @@ const UsersApi = ({
 
     return (
         <>
-            { isFetching ? <Preloader/> : null}
+            {isFetching ? <Preloader/> : null}
             <Users
                 users={users}
                 follow={followUser}
@@ -74,6 +80,7 @@ const UsersApi = ({
                 totalUsersCount={totalUsersCount}
                 pageSize={pageSize}
                 isFetching={isFetching}
+                following={following}
             />
         </>
     )
@@ -86,7 +93,8 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        following: state.usersPage.following
     }
 }
 
@@ -96,5 +104,6 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    togalIsFetching
+    togalIsFetching,
+    followingAC
 })(UsersApi)
