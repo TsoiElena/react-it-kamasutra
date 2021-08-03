@@ -61,7 +61,7 @@ const findUsersReducer = (state = initialState, action) => {
 
         case FOLLOWING:
             return {...state, following: action.following ? [...state.following, action.userId]
-                    : [...state.following.filter(id => id != action.userId)]}
+                    : [...state.following.filter(id => id !== action.userId)]}
 
         default:
             return state

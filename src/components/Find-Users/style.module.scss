@@ -57,3 +57,7 @@
   font-weight: bold;
   background-color: $active-color;
 }
+
+button:disabled{
+  background-color: $text-color;
+}
