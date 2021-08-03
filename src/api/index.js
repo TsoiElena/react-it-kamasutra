@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {togalIsFetching} from "../redux/auth-reducer";
+import {setAuthUserData, togalIsFetching} from "../redux/auth-reducer";
 
 const instance = axios.create({
     withCredentials: true,
