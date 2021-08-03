@@ -2,13 +2,12 @@ import React from 'react'
 /*import s from './Profile.module.scss'*/
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import Redirect from "react-router-dom/es/Redirect";
 
-const Profile = ({posts, newPostText, dispatch, profile}) => {
+const Profile = ({posts, newPostText, dispatch, profile, status, updateStatus}) => {
 
     return (
         <div >
-            <ProfileInfo profile={profile}/>
+            <ProfileInfo profile={profile} status={status} updateStatus={updateStatus}/>
             <MyPostsContainer
                 posts={posts}
                 newPostText={newPostText}

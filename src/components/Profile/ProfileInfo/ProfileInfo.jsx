@@ -5,7 +5,7 @@ import imgAlt from '../../../assets/images/UserImg.png'
 import ProfileStatus from "./ProfileStatus";
 
 
-const ProfileInfo = ({profile}) => {
+const ProfileInfo = ({profile, status, updateStatus}) => {
     if (!profile) return <Preloader/>
 
     return (
@@ -14,7 +14,7 @@ const ProfileInfo = ({profile}) => {
             <div className={s.descriptionBlock}>
                 <div>
                     <div className={s.main}>{profile.fullName}</div>
-                    <ProfileStatus status={profile.aboutMe}/>
+                    <ProfileStatus status={status} updateStatus={updateStatus}/>
                 </div>
                 <div>
                     <div className={s.main}>
