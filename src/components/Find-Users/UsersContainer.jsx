@@ -6,7 +6,7 @@ import {
     unfollow
 } from '../../redux/findUsers-reducer'
 import connect from 'react-redux/lib/connect/connect'
-import api from '../../api'
+import {userAPI, usersAPI} from '../../api'
 import Users from './index'
 import Preloader from "../common/Preloader/Preloader";
 
@@ -27,16 +27,16 @@ const UsersApi = ({
     const onPageChanged = (page) => {
         setCurrentPage(page)
         togalIsFetching(true)
-        api.get(`users?page=${page}&count=${pageSize}`, {withCredentials: true}).then(res => {
-            setUsers(res.data.items)
+        usersAPI.getUsers(page, pageSize).then(data => {
+            setUsers(data.items)
             togalIsFetching(false)
         })
     }
 
     const followUser = (id) => {
-        api.post(`/follow/${id}`, {}, {withCredentials: true}).then(res => {
-            togalIsFetching(true)
-            if(res.data.resultCode === 0){
+        togalIsFetching(true)
+        userAPI.follow(id).then(resultCode => {
+            if(resultCode === 0){
                 follow(id)
             }
             togalIsFetching(false)
@@ -44,9 +44,9 @@ const UsersApi = ({
     }
 
     const unfollowUser = (id) => {
-        api.delete(`/follow/${id}`, {withCredentials: true}).then(res => {
-            togalIsFetching(true)
-            if(res.data.resultCode === 0){
+        togalIsFetching(true)
+        userAPI.unfollow(id).then(resultCode => {
+            if(resultCode === 0){
                 unfollow(id)
             }
             togalIsFetching(false)
@@ -55,10 +55,10 @@ const UsersApi = ({
 
     useEffect(() => {
         togalIsFetching(true)
-        api.get(`users?page=${currentPage}&count=${pageSize}`, {withCredentials: true}).then(res => {
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
             togalIsFetching(false)
-            setUsers(res.data.items)
-            setTotalUsersCount(res.data.totalCount)
+            setUsers(data.items)
+            setTotalUsersCount(data.totalCount)
         })
     }, [])
 
