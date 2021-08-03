@@ -1,19 +1,15 @@
 import React, {useEffect} from 'react'
 import Profile from './Profile'
-import api, {usersAPI} from '../../api'
-import {setUserProfile} from '../../redux/profile-reducer'
+import {getUserThunkCreator} from '../../redux/profile-reducer'
 import connect from "react-redux/lib/connect/connect";
 import withRouter from "react-router-dom/es/withRouter";
 
-const ProfileContainer = ({posts, newPostText, dispatch, profile, setUserProfile, match}) => {
+const ProfileContainer = ({posts, newPostText, dispatch, profile, match, getUserThunkCreator}) => {
 
     useEffect(() => {
         let userId
         match.params.userId ? userId = match.params.userId : userId = 22
-        usersAPI.getUser(userId).then(data => {
-            setUserProfile(data)
-
-        })
+        getUserThunkCreator(userId)
     }, [])
 
     return (
@@ -34,6 +30,4 @@ let mapStateToProps = (state) => ({
 
 let withURLCOMP = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {
-    setUserProfile,
-}) (withURLCOMP)
+export default connect(mapStateToProps, {getUserThunkCreator}) (withURLCOMP)

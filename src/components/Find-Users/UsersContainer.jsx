@@ -1,71 +1,35 @@
 import React, {useEffect} from 'react'
-import {
-    follow, followingAC,
-    setCurrentPage, setTotalUsersCount,
-    setUsers, togalIsFetching,
-    unfollow
-} from '../../redux/findUsers-reducer'
+import {getUsersThunkCrator, followThunkCreator, unfollowThunkCreator} from '../../redux/findUsers-reducer'
 import connect from 'react-redux/lib/connect/connect'
-import {userAPI, usersAPI} from '../../api'
 import Users from './index'
 import Preloader from "../common/Preloader/Preloader";
 
 const UsersApi = ({
                       users,
                       following,
-                      follow,
-                      unfollow,
-                      setUsers,
                       pageSize,
                       totalUsersCount,
                       currentPage,
-                      setCurrentPage,
-                      setTotalUsersCount,
                       isFetching,
-                      togalIsFetching,
-                      followingAC
+                      getUsersThunkCrator,
+                      followThunkCreator,
+                      unfollowThunkCreator
                   }) => {
 
     const onPageChanged = (page) => {
-        setCurrentPage(page)
-        togalIsFetching(true)
-        usersAPI.getUsers(page, pageSize).then(data => {
-            setUsers(data.items)
-            togalIsFetching(false)
-        })
+        getUsersThunkCrator(page, pageSize)
     }
 
     const followUser = (id) => {
-        togalIsFetching(true)
-        followingAC(true, id)
-        userAPI.follow(id).then(resultCode => {
-            if (resultCode === 0) {
-                follow(id)
-            }
-            togalIsFetching(false)
-            followingAC(false, id)
-        })
+         followThunkCreator(id)
     }
 
     const unfollowUser = (id) => {
-        togalIsFetching(true)
-        followingAC(true, id)
-        userAPI.unfollow(id).then(resultCode => {
-            if (resultCode === 0) {
-                unfollow(id)
-            }
-            togalIsFetching(false)
-            followingAC(false, id)
-        })
+        unfollowThunkCreator(id)
     }
 
     useEffect(() => {
-        togalIsFetching(true)
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
-            togalIsFetching(false)
-            setUsers(data.items)
-            setTotalUsersCount(data.totalCount)
-        })
+        getUsersThunkCrator(currentPage, pageSize)
     }, [])
 
     return (
@@ -99,11 +63,7 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    togalIsFetching,
-    followingAC
+    getUsersThunkCrator,
+    followThunkCreator,
+    unfollowThunkCreator
 })(UsersApi)

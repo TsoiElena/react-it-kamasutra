@@ -1,3 +1,5 @@
+import {usersAPI} from "../api";
+
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const CHANGE_LIKES_COUNT = 'CHANGE-LIKES-COUNT'
@@ -60,5 +62,11 @@ export const addPost = () => ({type: ADD_POST})
 export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, text})
 export const likesCountChange = (id) => ({type: CHANGE_LIKES_COUNT, id})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+
+export const getUserThunkCreator = (id) => (dispatch) => {
+    usersAPI.getUser(id).then(data => {
+        dispatch(setUserProfile(data))
+    })
+}
 
 export default profileReducer

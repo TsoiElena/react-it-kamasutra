@@ -1,3 +1,5 @@
+import {userAPI, usersAPI} from "../api";
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -75,5 +77,39 @@ export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, current
 export const setTotalUsersCount = (totalCount) => ({type: SET_TOTAL_USERS_COUNT, totalCount})
 export const togalIsFetching = (isFetching) => ({type: TOGAL_IS_FETCHING, isFetching})
 export const followingAC = (following, userId) => ({type: FOLLOWING, following, userId})
+
+export const getUsersThunkCrator = (page, pageSize) => (dispatch) => {
+    dispatch(togalIsFetching(true))
+    dispatch(setCurrentPage(page))
+    usersAPI.getUsers(page, pageSize).then(data => {
+        dispatch(setUsers(data.items))
+        dispatch(togalIsFetching(false))
+        dispatch(setTotalUsersCount(data.totalCount))
+    })
+}
+
+export const followThunkCreator = (id) => (dispatch) => {
+    dispatch(togalIsFetching(true))
+    dispatch(followingAC(true, id))
+    userAPI.follow(id).then(resultCode => {
+        if (resultCode === 0) {
+            dispatch(follow(id))
+        }
+        dispatch(togalIsFetching(false))
+        dispatch(followingAC(false, id))
+    })
+}
+
+export const unfollowThunkCreator = (id) => (dispatch) => {
+    dispatch(togalIsFetching(true))
+    dispatch(followingAC(true, id))
+    userAPI.unfollow(id).then(resultCode => {
+        if (resultCode === 0) {
+            dispatch(unfollow(id))
+        }
+        dispatch(togalIsFetching(false))
+        dispatch(followingAC(false, id))
+    })
+}
 
 export default findUsersReducer
