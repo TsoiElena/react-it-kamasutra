@@ -4,6 +4,7 @@ import {getUserThunkCreator} from '../../redux/profile-reducer'
 import connect from "react-redux/lib/connect/connect";
 import withRouter from "react-router-dom/es/withRouter";
 import {withAuthRedirect} from "../HOC/AuthRedirect";
+import {compose} from "redux";
 
 const ProfileContainer = ({posts, newPostText, dispatch, profile, match, getUserThunkCreator}) => {
 
@@ -25,12 +26,12 @@ const ProfileContainer = ({posts, newPostText, dispatch, profile, match, getUser
     )
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
 })
 
-let withURLCOMP = withRouter(AuthRedirectComponent)
-
-export default connect(mapStateToProps, {getUserThunkCreator}) (withURLCOMP)
+export default compose(
+    connect(mapStateToProps, {getUserThunkCreator}),
+    withRouter,
+    withAuthRedirect
+) (ProfileContainer)

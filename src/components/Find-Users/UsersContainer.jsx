@@ -4,6 +4,7 @@ import connect from 'react-redux/lib/connect/connect'
 import Users from './index'
 import Preloader from "../common/Preloader/Preloader";
 import {withAuthRedirect} from "../HOC/AuthRedirect";
+import {compose} from "redux";
 
 const UsersApi = ({
                       users,
@@ -51,9 +52,6 @@ const UsersApi = ({
     )
 }
 
-let AuthRedirectComponent = withAuthRedirect(UsersApi)
-
-
 const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -65,8 +63,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {
-    getUsersThunkCrator,
-    followThunkCreator,
-    unfollowThunkCreator
-})(AuthRedirectComponent)
+export default compose(
+    connect(mapStateToProps, {
+        getUsersThunkCrator,
+        followThunkCreator,
+        unfollowThunkCreator
+    }),
+    withAuthRedirect
+) (UsersApi)
