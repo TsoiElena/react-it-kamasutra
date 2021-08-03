@@ -2,6 +2,7 @@ import React from 'react'
 import s from './ProfileInfo.module.scss'
 import Preloader from "../../common/Preloader/Preloader"
 import imgAlt from '../../../assets/images/UserImg.png'
+import ProfileStatus from "./ProfileStatus";
 
 
 const ProfileInfo = ({profile}) => {
@@ -13,7 +14,7 @@ const ProfileInfo = ({profile}) => {
             <div className={s.descriptionBlock}>
                 <div>
                     <div className={s.main}>{profile.fullName}</div>
-                    <div>{profile.aboutMe}</div>
+                    <ProfileStatus status={profile.aboutMe}/>
                 </div>
                 <div>
                     <div className={s.main}>
