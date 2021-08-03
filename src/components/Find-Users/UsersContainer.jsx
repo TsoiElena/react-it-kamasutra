@@ -3,6 +3,7 @@ import {getUsersThunkCrator, followThunkCreator, unfollowThunkCreator} from '../
 import connect from 'react-redux/lib/connect/connect'
 import Users from './index'
 import Preloader from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../HOC/AuthRedirect";
 
 const UsersApi = ({
                       users,
@@ -50,6 +51,8 @@ const UsersApi = ({
     )
 }
 
+let AuthRedirectComponent = withAuthRedirect(UsersApi)
+
 
 const mapStateToProps = (state) => {
     return {
@@ -66,4 +69,4 @@ export default connect(mapStateToProps, {
     getUsersThunkCrator,
     followThunkCreator,
     unfollowThunkCreator
-})(UsersApi)
+})(AuthRedirectComponent)
