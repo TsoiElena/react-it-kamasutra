@@ -2,6 +2,7 @@ import s from './Dialogs.module.scss'
 import React from 'react'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import Redirect from "react-router-dom/es/Redirect";
 
 const Dialogs = ({dialogsData, messagesData, messageText, updateNewMessageText, messageSent}) => {
 
