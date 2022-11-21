@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {getUsersThunkCrator, followThunkCreator, unfollowThunkCreator} from '../../redux/findUsers-reducer'
 import connect from 'react-redux/lib/connect/connect'
 import Users from './index'
-import Preloader from "../common/Preloader/Preloader";
+import Preloader from '../common/Preloader/Preloader'
 import {withAuthRedirect} from "../HOC/AuthRedirect";
 import {compose} from "redux";
 
@@ -59,7 +59,8 @@ const mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        following: state.usersPage.following
+        following: state.usersPage.following,
+        pagination: state.usersPage.pagination,
     }
 }
 

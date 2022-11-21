@@ -1,11 +1,12 @@
 import React from 'react'
 import s from './Header.module.scss'
 import {NavLink} from "react-router-dom";
+import icon from '../../assets/images/icons8-react-100 (2).png'
 
 const Header = ({isAuth, login}) => {
     return (
         <header className={s.header}>
-            <img src='https://img2.freepng.ru/20180509/gvw/kisspng-globe-earth-clip-art-5af366a46f1587.271956161525900964455.jpg' alt="?"/>
+            <img src={icon} alt="?"/>
             <div className={s.loginBlock}>
                 {isAuth? <div className={s.userName}>{login}</div> : <NavLink to={'/login'}>Login</NavLink>}
             </div>

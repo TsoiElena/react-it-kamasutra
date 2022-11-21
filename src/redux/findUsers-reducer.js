@@ -14,7 +14,7 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    following: []
+    following: [],
 }
 
 const findUsersReducer = (state = initialState, action) => {
@@ -77,6 +77,7 @@ export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, current
 export const setTotalUsersCount = (totalCount) => ({type: SET_TOTAL_USERS_COUNT, totalCount})
 export const togalIsFetching = (isFetching) => ({type: TOGAL_IS_FETCHING, isFetching})
 export const followingAC = (following, userId) => ({type: FOLLOWING, following, userId})
+
 
 export const getUsersThunkCrator = (page, pageSize) => (dispatch) => {
     dispatch(togalIsFetching(true))

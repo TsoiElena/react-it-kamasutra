@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import s from './ProfileInfo.module.scss'
 
 const ProfileStatus = ({status, updateStatus}) => {
     let [mode, editMode] = useState(false)
@@ -17,7 +18,7 @@ const ProfileStatus = ({status, updateStatus}) => {
                     <div>
                         <span onDoubleClick={() => editMode(true)}>{status? status : 'no status'}</span>
                     </div>
-                     : <div>
+                     : <div className={s.status}>
                         <input autoFocus={true} onBlur={(e) => handleStatus(e)} value={currentStatus} onChange={e => changeStatus(e.currentTarget.value)}/>
                     </div>
                 }

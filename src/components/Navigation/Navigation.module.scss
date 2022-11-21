@@ -4,10 +4,13 @@
 .navigation {
     grid-area: n;
     background-color: $second-color;
+    border-radius: 20px;
     padding: 15px;
 }
 .item a {
     color: $text-color;
+    font-size: x-large;
+    font-weight: bold;
     text-decoration: none;
 }
 

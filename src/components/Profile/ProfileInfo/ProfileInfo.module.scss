@@ -1,13 +1,26 @@
+@import "src/index";
+
 .infoBlock {
-    padding: 20px;
     display: flex;
 }
+
+.foto {
+    background-color: $main-color;
+    border-radius: 20px;
+    border: 1px solid $three-color;
+    padding: 20px;
+}
 .descriptionBlock{
+    width: 100%;
     display: flex;
-    padding-left: 30px;
+    margin-left: 10px;
+    padding: 30px;
     flex-direction: column;
     justify-content: space-between;
     font-size: larger;
+    background-color: $main-color;
+    border: 1px solid $three-color;
+    border-radius: 20px;
 }
 .previmg {
     width: 250px;
@@ -15,6 +28,16 @@
 }
 .main{
     font-weight: bold;
+}
+
+.name {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.status input {
+    color: $content-color;
+    background-color: $main-color;
 }
 
 .main span {

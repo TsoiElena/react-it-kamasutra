@@ -19,16 +19,15 @@ const Dialogs = ({dialogsData, messagesData, messageText, updateNewMessageText, 
 
     return (
         <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
-                {dialogsData.map((dialog) => <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>)}
-
-            </div>
             <div className={s.messages}>
                 {messagesData.map((message) => <Message key={message.id} message={message.text}/>)}
-                <div>
-                    <textarea cols="30" rows="10" ref={newText} onChange={textMessageChange} value={messageText}/>
+                <div className={s.sending}>
+                    <textarea cols="30" rows="5" ref={newText} onChange={textMessageChange} value={messageText}/>
                     <button onClick={sentMeesage}>sent</button>
                 </div>
+            </div>
+            <div className={s.dialogsItems}>
+                {dialogsData.map((dialog) => <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>)}
             </div>
         </div>
     )

@@ -20,12 +20,12 @@ const MyPosts = ({posts, newPostText, updateNewPostText, addPost, likesCountChan
 
     return (
         <div className={s.postsBlock}>
-            <h3>My posts</h3>
-            <div>
+            <h2>My posts</h2>
+            <div className={s.addPostBlock}>
                 <textarea
                     name=""
                     id=""
-                    cols="30"
+                    cols="50"
                     rows="2"
                     ref={newText}
                     onChange={onChangePost}

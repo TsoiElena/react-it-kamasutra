@@ -1,22 +1,56 @@
-import React from 'react'
 import style from './style.module.scss'
 import userPhoto from '../../assets/images/UserImg.png'
 import {NavLink} from 'react-router-dom'
 
 const Users = ({users, follow, unfollow, onPageChanged, currentPage, totalUsersCount, pageSize, following}) => {
     let pagesCount = Math.ceil(totalUsersCount/pageSize)
-    let pages = []
-
-    for(let i=1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
 
     return (
         <div>
-            <div>
-                {pages.map(page => (<button className={currentPage === page ? style.active : ''} onClick={() => {
-                    onPageChanged(page)
-                }}>{page}</button>))}
+            <div className={style.pagination}>
+                <button className={currentPage === 1 ? style.pactive : style.page} onClick={() => {
+                    onPageChanged(1)
+                }}>1</button>
+                {currentPage < 3 ? (
+                    <>
+                        <button className={currentPage === 2 ? style.pactive : style.page} onClick={() => {
+                            onPageChanged(2)
+                        }}>2</button>
+                        <button className={currentPage === 3 ? style.pactive : style.page} onClick={() => {
+                            onPageChanged(3)
+                        }}>3</button>
+                        <button disabled>...</button>
+                    </>
+                ) : null}
+                {currentPage > 2 && currentPage < pagesCount-1 ? (
+                    <>
+                        <button disabled>...</button>
+                        <button className={style.page} onClick={() => {
+                            onPageChanged(currentPage-1)
+                        }}>{currentPage-1}</button>
+                        <button className={style.pactive} onClick={() => {
+                            onPageChanged(currentPage)
+                        }}>{currentPage}</button>
+                        <button className={style.page} onClick={() => {
+                            onPageChanged(currentPage+1)
+                        }}>{currentPage+1}</button>
+                        <button disabled>...</button>
+                    </>
+                ) : null}
+                {currentPage > pagesCount-2 ? (
+                    <>
+                        <button disabled>...</button>
+                        <button className={currentPage === pagesCount-2 ? style.pactive : style.page} onClick={() => {
+                            onPageChanged(pagesCount-2)
+                        }}>{pagesCount-2}</button>
+                        <button className={currentPage === pagesCount-1 ? style.pactive : style.page} onClick={() => {
+                            onPageChanged(pagesCount-1)
+                        }}>{pagesCount-1}</button>
+                    </>
+                ) : null}
+                <button className={currentPage === pagesCount ? style.pactive : style.page} onClick={() => {
+                    onPageChanged(pagesCount)
+                }}>{pagesCount}</button>
             </div>
             {
                 users.map(user => (<div key={user.id} className={style.item}>
@@ -50,7 +84,6 @@ const Users = ({users, follow, unfollow, onPageChanged, currentPage, totalUsersC
                     </div>)
                 )
             }
-
         </div>
     )
 }

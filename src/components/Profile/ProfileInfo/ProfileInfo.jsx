@@ -10,10 +10,12 @@ const ProfileInfo = ({profile, status, updateStatus}) => {
 
     return (
         <div className={s.infoBlock}>
-            <div><img  className={s.previmg} src={!profile.photos.large? imgAlt : profile.photos.large} alt=''/></div>
+            <div className={s.foto}>
+                <img  className={s.previmg} src={!profile.photos.large? imgAlt : profile.photos.large} alt=''/>
+            </div>
             <div className={s.descriptionBlock}>
-                <div>
-                    <div className={s.main}>{profile.fullName}</div>
+                <div className={s.main}>
+                    <div className={s.name}>{profile.fullName}</div>
                     <ProfileStatus status={status} updateStatus={updateStatus}/>
                 </div>
                 <div>

@@ -1,7 +1,39 @@
+@import "src/index";
+
 .postsBlock{
+    margin-top: 10px;
     padding: 10px;
+    background-color: $main-color;
+    border: 1px solid $three-color;
+    border-radius: 20px;
+}
+
+.postsBlock h2 {
+    margin-left: 20px;
+}
+
+.addPostBlock {
+    display: flex;
+    margin: 20px;
+}
+
+.addPostBlock textarea {
+    background-color: $main-color;
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: $content-color;
+    font-size: large;
+}
+
+.addPostBlock button {
+    background-color: $text-color;
+    color: $second-color;
+    border-radius: 20px;
+    margin-left: 5px;
+    font-size: medium;
+    border: 2px solid $three-color;
 }
 
 .posts {
-    margin-top: 10px;
+    margin: 20px;
 }

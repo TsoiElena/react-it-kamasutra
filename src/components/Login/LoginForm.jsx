@@ -19,10 +19,10 @@ const LoginForm = ({userId, email, login}) => {
 
     return (
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className={s.input}>
                     <input  required className={s.box} type="text" placeholder={'Login'} value={currentlogin} onChange={(e) => setLogin(e.target.value)}/>
                 </div>
-                <div>
+                <div className={s.input}>
                     <input  required className={s.box} type={'password'} placeholder={'Password'} value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div>

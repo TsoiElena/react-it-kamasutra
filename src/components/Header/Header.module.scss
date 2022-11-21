@@ -3,9 +3,16 @@
 .header {
     grid-area: h;
     background-color: $main-color;
+    margin-top: 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    border: 1px solid $three-color;
 }
 .header img {
-    width: 20px;
+    width: 60px;
 }
 
 .loginBlock {
@@ -15,12 +22,14 @@ padding: 20px;
 }
 
 .loginBlock a {
-    color: $content-color;
-    font-size: larger;
+    color: $text-color;
+    font-size: xx-large;
+    font-weight: bold;
     text-decoration: none;
 }
 
 .userName {
-    color: $content-color;
-    font-size: larger;
+    color: $text-color;
+    font-size: xx-large;
+    font-weight: bold;
 }
